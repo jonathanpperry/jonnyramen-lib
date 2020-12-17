@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "jonnyramen-lib": {
+      "projectType": "library",
+      "root": "projects/jonnyramen-lib",
+      "sourceRoot": "projects/jonnyramen-lib/src",
+      "prefix": "dev",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/jonnyramen-lib/tsconfig.lib.json",
+            "project": "projects/jonnyramen-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/jonnyramen-lib/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/jonnyramen-lib/src/test.ts",
+            "tsConfig": "projects/jonnyramen-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/jonnyramen-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/jonnyramen-lib/tsconfig.lib.json",
+              "projects/jonnyramen-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "jonnyramen-lib"
+}
